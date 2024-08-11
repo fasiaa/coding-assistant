@@ -33,20 +33,16 @@ class DefaultButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: height ?? 5.h,
-      width: width ?? 40.w,
+      height: height ?? 30.h,
+      width: width ?? 60.w,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(11.px),
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
+        borderRadius: BorderRadius.circular(16.px),
+        gradient: const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
           colors: [
-            // Color(0xff21C4FA),
-            // Color(0xff338DFD),
-            Theme.of(context).colorScheme.surface,
-            Theme.of(context).colorScheme.secondary,
-
-            // Theme.of(context).colorScheme.primary,
+            Color(0xFF665E98),
+            Color(0xFF30266F),
           ],
         ),
       ),
