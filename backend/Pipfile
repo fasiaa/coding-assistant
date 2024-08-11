@@ -7,8 +7,11 @@ name = "pypi"
 flask = "*"
 google-generativeai = "*"
 pyrebase4 = "*"
+python-dotenv = "*"
+google = "*"
+markdown = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.10"
+python_version = "*"

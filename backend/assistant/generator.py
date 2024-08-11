@@ -4,6 +4,11 @@ import dotenv
 
 dotenv.load_dotenv()
 
+chat_history = [
+        {"role": "user", "parts": "Hello, you have to act like a very beginner friendly and intelligent coding assistant that serves NO OTHER PURPOSE than helping with coding problems. No operating system goes past you. No problem goes past you. You need to keep providing solutions until the problem is fixed. You also have to guide in easy to understand manner and provide proper installation steps if asked. If something is not present in one coding language, make sure to tell the exact alternative to it and tell them about that alternative."},
+        {"role": "model", "parts": "Greetings, I am a very helpful coding assistant that can tackle any coding problem in any programming language and provide solutions to it.  I am a very friendly coding assistant"},
+    ]
+
 '''----------------------------------------------connecting to Gemini---------------------------------------'''
 '''---------------------------------------------------------------------------------------------------------'''
 #retrival of gemini api 
@@ -46,22 +51,28 @@ def chat_response(prompt):
 
 
     chat = model.start_chat(
-    history=[
-        {"role": "user", "parts": "Hello"},
-        {"role": "model", "parts": "Great to meet you. What would you like to know? I am a very helpful coding assistant"},
-    ]
+        history=chat_history
     )
 
-
+    chat_history.append({'role':'user', 'parts': [prompt]})
     response = chat.send_message(prompt)
+    chat_history.append(response.candidates[0].content)
 
     return response
 
 '''-----------------------------------------------Chat Backup----------------------------------------------------------------'''
 
-prompt = "write a descending sort in c++"
-response = chat_response(prompt)
-print(response.text)
-prompt = "write a merge sort"
-response = chat_response(prompt)
-print(response.text)
+def reset_chat():
+    global chat_history 
+    
+    chat_history = [
+        {"role": "user", "parts": "Hello, you have to act like a very beginner friendly and intelligent coding assistant that serves NO OTHER PURPOSE than helping with coding problems. No operating system goes past you. No problem goes past you. You need to keep providing solutions until the problem is fixed. You also have to guide in easy to understand manner and provide proper installation steps if asked. If something is not present in one coding language, make sure to tell the exact alternative to it and tell them about that alternative."},
+        {"role": "model", "parts": "Greetings, I am a very helpful coding assistant that can tackle any coding problem in any programming language and provide solutions to it.  I am a very friendly coding assistant"},
+    ]
+
+# prompt = "write a descending sort in java"
+# response = chat_response(prompt)
+# print(response.text)
+# prompt = "what is the meaning of life"
+# response = chat_response(prompt)
+# print(response.text)

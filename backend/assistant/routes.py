@@ -2,8 +2,14 @@ from assistant import app
 from flask import render_template, redirect, url_for, request, jsonify, session
 # from authentication import log_in, sign_up, get_user_details, reset_password
 from assistant import authentication
+from generator import chat_response, reset_chat
+import markdown
 
-basic_questions_and_responses = [{''}]
+basic_questions_and_responses = {
+    'thank': 'I am glad I was able to help. Good luck with your project. Necroder at your service 24/7.',
+    'hello': "Hello, I am Necroder, I am a super helpful coding assistant. No bug goes from my sight uncaught. How may I help you today?",
+    'bye': 'Happy coding. Do not let a bug get you down :)',
+}
 
 @app.route("/")
 @app.route("/home")
@@ -16,7 +22,19 @@ def get_chat_response():
     if request.method == 'POST':
         prompt = request.form.get("prompt")    # implement the logic for chat response and return 
 
+        try:
+            for question, answer in basic_questions_and_responses:
+                if question in prompt.lower():
+                    return jsonify({'response': answer})
+
+            response = chat_response(prompt)
+            return format_markdown({'response': response})
+        
+        except:
+            return "Error generating answer"
+
     # if the request method is get then return the normal thing
+    return "Hello, I am Necroder, I am a super helpful coding assistant. No bug goes from my sight uncaught. How may I help you today?"
 
 @app.route("/signup", methods=['GET', 'POST'])
 def sign_up():
@@ -35,7 +53,6 @@ def sign_up():
         except: 
             return "Failed to Sign Up"
         
-
 @app.route("/login", methods=['GET', 'POST'])
 def login_page():
     if "user" in session: 
@@ -73,3 +90,18 @@ def forgot_password():
             return "Password Reset Email Sent"
         except:
             return "Failed to Reset Password"
+        
+@app.route('/reset-chat')
+def reset_chat_history():
+    reset_chat()
+
+@app.route('/feedback', methods=['POST', 'GET'])
+def give_feedback():
+    if request.method == "POST":
+        # is your problem solved: yes or no
+        # are you satisfied with it: 
+        # 
+        pass
+
+def format_markdown(markdown_text):
+    return markdown.markdown(markdown_text)

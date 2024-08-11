@@ -8,7 +8,7 @@ dotenv.load_dotenv()
 app = Flask(__name__)
 
 # Key for session cookies 
-app.secret_key = "6447247876"
+app.secret_key = "64472475857858757857832109767876"
 
 config = {
     "apiKey":os.getenv("GOOGLE_API_KEY") , 
@@ -20,6 +20,8 @@ config = {
     "measurementId":os.getenv("GOOGLE_MEASUREMENT_ID"),
     "databaseURL": "",
 }
+
+#counters
 
 firebase = pyrebase.initialize_app(config)
 gemini_api = os.getenv("API_KEY")
