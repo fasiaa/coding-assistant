@@ -3,6 +3,7 @@ from flask import render_template, redirect, url_for, request, jsonify, session
 # from authentication import log_in, sign_up, get_user_details, reset_password
 from assistant import authentication
 from generator import chat_response, reset_chat
+from general_chatbot import response , reset
 import markdown
 
 basic_questions_and_responses = {
@@ -35,6 +36,25 @@ def get_chat_response():
 
     # if the request method is get then return the normal thing
     return "Hello, I am Necroder, I am a super helpful coding assistant. No bug goes from my sight uncaught. How may I help you today?"
+
+    def get_response():
+        if request.method == 'POST':
+            prompt = request.form.get("prompt")    # implement the logic for chat response and return 
+
+        try:
+            for question, answer in basic_questions_and_responses:
+                if question in prompt.lower():
+                    return jsonify({'response': answer})
+
+            response = response(prompt)
+            return format_markdown({'response': response})
+        
+        except:
+            return "Error generating answer"
+
+    # if the request method is get then return the normal thing
+    return "Hello, I am Necroder, I am a super helpful coding assistant. No bug goes from my sight uncaught. How may I help you today?"
+
 
 @app.route("/signup", methods=['GET', 'POST'])
 def sign_up():
@@ -94,6 +114,9 @@ def forgot_password():
 @app.route('/reset-chat')
 def reset_chat_history():
     reset_chat()
+
+def reser_chat():
+    reset()
 
 @app.route('/feedback', methods=['POST', 'GET'])
 def give_feedback():

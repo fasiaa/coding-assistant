@@ -21,7 +21,6 @@ config = {
     "databaseURL": "",
 }
 
-#counters
 
 firebase = pyrebase.initialize_app(config)
 gemini_api = os.getenv("API_KEY")

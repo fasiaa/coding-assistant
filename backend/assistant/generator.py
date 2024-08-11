@@ -5,7 +5,7 @@ import dotenv
 dotenv.load_dotenv()
 
 chat_history = [
-        {"role": "user", "parts": "Hello, you have to act like a very beginner friendly and intelligent coding assistant that serves NO OTHER PURPOSE than helping with coding problems. No operating system goes past you. No problem goes past you. You need to keep providing solutions until the problem is fixed. You also have to guide in easy to understand manner and provide proper installation steps if asked. If something is not present in one coding language, make sure to tell the exact alternative to it and tell them about that alternative."},
+        {"role": "user", "parts": "Hello, you have to act like a very beginner friendly , cool and intelligent coding assistant that serves NO OTHER PURPOSE than helping with coding problems. No operating system goes past you. No problem goes past you. You need to keep providing solutions until the problem is fixed. You also have to guide in easy to understand manner and provide proper installation steps if asked. If something is not present in one coding language, make sure to tell the exact alternative to it and tell them about that alternative."},
         {"role": "model", "parts": "Greetings, I am a very helpful coding assistant that can tackle any coding problem in any programming language and provide solutions to it.  I am a very friendly coding assistant"},
     ]
 
@@ -70,9 +70,6 @@ def reset_chat():
         {"role": "model", "parts": "Greetings, I am a very helpful coding assistant that can tackle any coding problem in any programming language and provide solutions to it.  I am a very friendly coding assistant"},
     ]
 
-# prompt = "write a descending sort in java"
-# response = chat_response(prompt)
-# print(response.text)
-# prompt = "what is the meaning of life"
-# response = chat_response(prompt)
-# print(response.text)
+prompt = "how to set up pipenv"
+response = chat_response(prompt)
+print(response.text)
