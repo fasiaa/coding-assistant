@@ -70,6 +70,7 @@ def reset_chat():
         {"role": "model", "parts": "Greetings, I am a very helpful coding assistant that can tackle any coding problem in any programming language and provide solutions to it.  I am a very friendly coding assistant"},
     ]
 
-prompt = "how to set up pipenv"
-response = chat_response(prompt)
-print(response.text)
+# prompt = "how to set up pipenv"
+# response = chat_response(prompt)
+# print(response.text)
+
