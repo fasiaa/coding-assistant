@@ -14,7 +14,7 @@ def home_page():
 @app.route('/ask', methods=['GET', 'POST'])
 def get_chat_response():
     if request.method == 'POST':
-        pass    # implement the logic for chat response and return 
+        prompt = request.form.get("prompt")    # implement the logic for chat response and return 
 
     # if the request method is get then return the normal thing
 

@@ -25,3 +25,4 @@ firebase = pyrebase.initialize_app(config)
 gemini_api = os.getenv("API_KEY")
 
 from assistant import routes
+from assistant import gemini_api
