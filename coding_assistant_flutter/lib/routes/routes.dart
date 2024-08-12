@@ -1,8 +1,8 @@
 import 'package:coding_assistant_flutter/ui/chat_screen/chat_screen.dart';
-import 'package:coding_assistant_flutter/ui/login_screen/login_screen.dart';
+import 'package:coding_assistant_flutter/ui/auth_screens.dart/login_screen.dart';
 import 'package:flutter/material.dart';
 import '../ui/home_screen/home_screen.dart';
-import '../ui/signup_screen.dart/signup_screen.dart';
+import '../ui/auth_screens.dart/signup_screen.dart';
 import 'routes_names.dart';
 
 class Routes {

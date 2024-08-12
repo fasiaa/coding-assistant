@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "530414090463",
+    "project_id": "coding-assistant-2c00b",
+    "storage_bucket": "coding-assistant-2c00b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:530414090463:android:5c8ae97df319d42e40516a",
+        "android_client_info": {
+          "package_name": "com.example.coding_assistant_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "530414090463-298603ormkj3f7bfthlhcfi734j8o89e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbjjE1yyL7JIBCX6xAZjV9jmgB24UsjcA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "530414090463-298603ormkj3f7bfthlhcfi734j8o89e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,6 +1,9 @@
 import 'package:coding_assistant_flutter/core/constants/image_assets.dart';
+import 'package:coding_assistant_flutter/ui/auth_screens.dart/auth_vm.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../core/constants/app_strings.dart';
+import '../../routes/routes_names.dart';
 
 AppBar reusableAppBar(BuildContext context) {
   return AppBar(
@@ -19,7 +22,14 @@ AppBar reusableAppBar(BuildContext context) {
       Padding(
         padding: const EdgeInsets.only(right: 24),
         child: IconButton(
-          onPressed: () {},
+          onPressed: () async {
+            await context.read<AuthProvider>().signOut();
+            if (!context.mounted) return;
+            Navigator.pushNamed(
+              context,
+              RoutesName.loginscreen,
+            );
+          },
           icon: const Icon(
             Icons.person_2_rounded,
             color: Colors.white,

@@ -19,6 +19,8 @@ dependencies:
   responsive_sizer: ^3.3.1
   pie_chart: ^5.4.0
   fl_chart: ^0.68.0
+  firebase_core: ^2.24.2
+  firebase_auth: ^4.16.0
 
 
 
