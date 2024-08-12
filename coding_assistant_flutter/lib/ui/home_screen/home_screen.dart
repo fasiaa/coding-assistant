@@ -1,8 +1,4 @@
-import 'package:coding_assistant_flutter/core/constants/app_strings.dart';
-import 'package:coding_assistant_flutter/core/constants/image_assets.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../../core/theme/theme_provider.dart';
 import '../widgets/home_screen_upper.dart';
 import '../widgets/reusable_appbar.dart';
 import '../widgets/states_widget.dart';
@@ -12,8 +8,6 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
-    final textTheme = Theme.of(context).textTheme;
     final theme = Theme.of(context);
     bool floatExtended = false;
     return Scaffold(

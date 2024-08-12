@@ -1,18 +1,30 @@
 import 'package:coding_assistant_flutter/core/constants/screen_utils.dart';
+import 'package:coding_assistant_flutter/ui/auth_screens.dart/auth_vm.dart';
 import 'package:coding_assistant_flutter/ui/widgets/default_button.dart';
 import 'package:coding_assistant_flutter/ui/widgets/default_textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../core/constants/image_assets.dart';
 import '../../routes/routes_names.dart';
 import '../widgets/login_with_google.dart';
 import '../widgets/row_with_text.dart';
 import '../widgets/welcome_text.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final ValueNotifier<bool> _loading = ValueNotifier<bool>(false);
+
+  @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context);
     return Scaffold(
       body: Row(
         children: [
@@ -61,25 +73,37 @@ class LoginScreen extends StatelessWidget {
                                 ),
                       ),
                       kHeight(36),
-                      const DefaultTextField(
+                      DefaultTextField(
+                        controller: _emailController,
                         hintText: 'Email',
                         icon: Icons.email_outlined,
                       ),
                       kHeight(16),
-                      const DefaultTextField(
+                      DefaultTextField(
+                        controller: _passwordController,
                         hintText: 'Password',
                         icon: Icons.lock_clock_outlined,
                       ),
                       kHeight(36),
                       DefaultButton(
+                        isLoading: _loading.value,
                         title: 'Login',
                         height: 52,
                         width: 125,
-                        onPress: () {
-                          Navigator.pushNamed(
-                            context,
-                            RoutesName.homescreen,
+                        onPress: () async {
+                          _loading.value = true;
+                          await authProvider.signInWithEmail(
+                            _emailController.text,
+                            _passwordController.text,
                           );
+                          if (!context.mounted) return;
+                          if (authProvider.user != null) {
+                            Navigator.pushNamed(
+                              context,
+                              RoutesName.homescreen,
+                            );
+                            _loading.value = false;
+                          }
                         },
                       ),
                       kHeight(36),
