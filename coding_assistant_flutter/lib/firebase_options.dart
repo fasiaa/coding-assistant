@@ -45,32 +45,4 @@ class DefaultFirebaseOptions {
         );
     }
   }
-
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDOVle15rENt693CsICQTzLnE4RAzMaaHY',
-    appId: '1:530414090463:web:f67cb3ad5be0bb7540516a',
-    messagingSenderId: '530414090463',
-    projectId: 'coding-assistant-2c00b',
-    authDomain: 'coding-assistant-2c00b.firebaseapp.com',
-    storageBucket: 'coding-assistant-2c00b.appspot.com',
-    measurementId: 'G-5XVRLRS97M',
-  );
-
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCbjjE1yyL7JIBCX6xAZjV9jmgB24UsjcA',
-    appId: '1:530414090463:android:5c8ae97df319d42e40516a',
-    messagingSenderId: '530414090463',
-    projectId: 'coding-assistant-2c00b',
-    storageBucket: 'coding-assistant-2c00b.appspot.com',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDX06hxm7wgaDRRFM19tj20xU9CZ4YQL7g',
-    appId: '1:530414090463:ios:6b03277a3461df9c40516a',
-    messagingSenderId: '530414090463',
-    projectId: 'coding-assistant-2c00b',
-    storageBucket: 'coding-assistant-2c00b.appspot.com',
-    iosClientId: '530414090463-rjdsa8l596dimlbsuju6kp452ahg0il5.apps.googleusercontent.com',
-    iosBundleId: 'com.example.codingAssistantFlutter',
-  );
 }
