@@ -2,6 +2,7 @@ import 'package:coding_assistant_flutter/core/constants/screen_utils.dart';
 import 'package:coding_assistant_flutter/ui/auth_screens.dart/auth_vm.dart';
 import 'package:coding_assistant_flutter/ui/widgets/default_button.dart';
 import 'package:coding_assistant_flutter/ui/widgets/default_textfield.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../core/constants/image_assets.dart';
@@ -50,8 +51,8 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Center(
                 child: Container(
                   margin: const EdgeInsets.symmetric(
-                    horizontal: 100,
-                    vertical: 80,
+                    horizontal: 140,
+                    vertical: 100,
                   ),
                   padding: const EdgeInsets.all(24),
                   decoration: BoxDecoration(
@@ -64,6 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     color: const Color(0x731C1C1C),
                   ),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         'Login',
@@ -72,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   color: const Color(0xFFA9B1D6),
                                 ),
                       ),
-                      kHeight(36),
+                      kHeight(48),
                       DefaultTextField(
                         controller: _emailController,
                         hintText: 'Email',
@@ -87,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       kHeight(36),
                       DefaultButton(
                         isLoading: _loading.value,
-                        title: 'Login',
+                        title: 'Sign In',
                         height: 52,
                         width: 125,
                         onPress: () async {
@@ -109,7 +111,42 @@ class _LoginScreenState extends State<LoginScreen> {
                       kHeight(36),
                       const RowWithTextBtw(),
                       kHeight(36),
-                      const LoginWithGoogle()
+                      const LoginWithGoogle(
+                        text1: 'Sign In with',
+                      ),
+                      kHeight(24),
+                      RichText(
+                        text: TextSpan(
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: "Don't have account? ",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge!
+                                  .copyWith(
+                                    color: Colors.white,
+                                  ),
+                            ),
+                            TextSpan(
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    RoutesName.signup,
+                                  );
+                                },
+                              text: 'Sign Up',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .displaySmall!
+                                  .copyWith(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),

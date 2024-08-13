@@ -1,6 +1,7 @@
 import 'package:coding_assistant_flutter/core/constants/screen_utils.dart';
 import 'package:coding_assistant_flutter/ui/widgets/default_button.dart';
 import 'package:coding_assistant_flutter/ui/widgets/default_textfield.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../core/constants/image_assets.dart';
@@ -49,8 +50,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
               child: Center(
                 child: Container(
                   margin: const EdgeInsets.symmetric(
-                    horizontal: 100,
-                    vertical: 80,
+                    horizontal: 140,
+                    vertical: 100,
                   ),
                   padding: const EdgeInsets.all(24),
                   decoration: BoxDecoration(
@@ -63,6 +64,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     color: const Color(0x731C1C1C),
                   ),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         'SignUp',
@@ -126,7 +128,42 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       kHeight(36),
                       const RowWithTextBtw(),
                       kHeight(36),
-                      const LoginWithGoogle(),
+                      const LoginWithGoogle(
+                        text1: 'Sign Up with',
+                      ),
+                      kHeight(24),
+                      RichText(
+                        text: TextSpan(
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: "Already have account? ",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge!
+                                  .copyWith(
+                                    color: Colors.white,
+                                  ),
+                            ),
+                            TextSpan(
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    RoutesName.loginscreen,
+                                  );
+                                },
+                              text: 'Sign In',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .displaySmall!
+                                  .copyWith(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),

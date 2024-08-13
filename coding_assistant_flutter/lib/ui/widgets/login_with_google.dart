@@ -3,8 +3,10 @@ import '../../core/constants/image_assets.dart';
 import '../../core/constants/screen_utils.dart';
 
 class LoginWithGoogle extends StatelessWidget {
+  final String text1;
   const LoginWithGoogle({
     super.key,
+    required this.text1,
   });
 
   @override
@@ -30,13 +32,13 @@ class LoginWithGoogle extends StatelessWidget {
             text: TextSpan(
               children: <TextSpan>[
                 TextSpan(
-                  text: 'Login With ',
+                  text: text1,
                   style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                         color: Colors.white,
                       ),
                 ),
                 TextSpan(
-                  text: 'Google',
+                  text: ' Google',
                   style: Theme.of(context).textTheme.displaySmall!.copyWith(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,

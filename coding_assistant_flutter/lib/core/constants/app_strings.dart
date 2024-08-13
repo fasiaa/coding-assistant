@@ -1,4 +1,4 @@
 abstract class AppStrings {
   static const ok = "OK";
-  static const appTitle = "Coding Assistant";
+  static const appTitle = "NecRoder";
 }

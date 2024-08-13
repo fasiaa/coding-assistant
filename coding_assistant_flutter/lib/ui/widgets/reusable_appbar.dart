@@ -21,8 +21,8 @@ AppBar reusableAppBar(BuildContext context) {
     actions: [
       Padding(
         padding: const EdgeInsets.only(right: 24),
-        child: IconButton(
-          onPressed: () async {
+        child: GestureDetector(
+          onTap: () async {
             await context.read<AuthProvider>().signOut();
             if (!context.mounted) return;
             Navigator.pushNamed(
@@ -30,9 +30,11 @@ AppBar reusableAppBar(BuildContext context) {
               RoutesName.loginscreen,
             );
           },
-          icon: const Icon(
-            Icons.person_2_rounded,
-            color: Colors.white,
+          child: Text(
+            "Sign Out",
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  color: Colors.white,
+                ),
           ),
         ),
       ),

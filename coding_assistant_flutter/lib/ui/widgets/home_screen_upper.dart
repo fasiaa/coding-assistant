@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/constants/screen_utils.dart';
+import '../../routes/routes_names.dart';
 import 'default_button.dart';
 
 class HomeScreenUpperWidget extends StatelessWidget {
@@ -46,10 +47,10 @@ class HomeScreenUpperWidget extends StatelessWidget {
                   height: 52,
                   width: 125,
                   onPress: () {
-                    // Navigator.pushNamed(
-                    //   context,
-                    //   RoutesName.homescreen,
-                    // );
+                    Navigator.pushNamed(
+                      context,
+                      RoutesName.chatscreen,
+                    );
                   },
                 ),
               ],
