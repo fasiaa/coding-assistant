@@ -1,4 +1,8 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:coding_assistant_flutter/core/constants/screen_utils.dart';
+import 'package:coding_assistant_flutter/core/models/chat_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 import '../widgets/reusable_appbar.dart';
 import 'chat_screen_vm.dart'; // Import the ChatProvider
@@ -11,15 +15,8 @@ class ChatScreen extends StatefulWidget {
 }
 
 class ChatScreenState extends State<ChatScreen> {
+  bool isTyping = false;
   final TextEditingController _controller = TextEditingController();
-
-  void _sendMessage() {
-    final chatProvider = Provider.of<ChatProvider>(context, listen: false);
-    if (_controller.text.isNotEmpty) {
-      chatProvider.addMessage(_controller.text);
-      _controller.clear();
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,36 +40,25 @@ class ChatScreenState extends State<ChatScreen> {
           children: [
             Expanded(
               child: ListView.builder(
+                reverse: true,
                 itemCount: chatProvider.messages.length,
                 itemBuilder: (context, index) {
-                  final message = chatProvider.messages[index];
-                  final isUserMessage = index % 2 == 0; // Just for example
-                  return Container(
-                    alignment: isUserMessage
-                        ? Alignment.centerRight
-                        : Alignment.centerLeft,
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 10, horizontal: 14),
-                      decoration: BoxDecoration(
-                        color: isUserMessage
-                            ? const Color(0xFF22273D)
-                            : const Color(0xFF3B4261),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Text(
-                        message,
-                        style: TextStyle(
-                          color: isUserMessage ? Colors.white : Colors.white,
-                        ),
-                      ),
-                    ),
+                  final message = chatProvider
+                      .messages[chatProvider.messages.length - 1 - index];
+
+                  return ChatWidget(
+                    message: message,
                   );
                 },
               ),
             ),
+            if (isTyping) ...[
+              const SpinKitThreeBounce(
+                color: Colors.white,
+                size: 18,
+              ),
+            ],
+            kHeight(24),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
@@ -82,7 +68,12 @@ class ChatScreenState extends State<ChatScreen> {
                       controller: _controller,
                       decoration: InputDecoration(
                         suffixIcon: IconButton(
-                          onPressed: _sendMessage,
+                          onPressed: () {
+                            if (_controller.text.trim().isNotEmpty) {
+                              chatProvider.sendMessage(_controller.text.trim());
+                              _controller.clear();
+                            }
+                          },
                           icon: const Icon(
                             Icons.send,
                             color: Color(0xFFBB9AF7),
@@ -107,6 +98,62 @@ class ChatScreenState extends State<ChatScreen> {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class ChatWidget extends StatelessWidget {
+  const ChatWidget({
+    super.key,
+    required this.message,
+  });
+
+  final ChatMessage message;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment:
+          message.isSentByUser ? Alignment.centerRight : Alignment.centerLeft,
+      padding: const EdgeInsets.symmetric(
+        vertical: 4,
+        horizontal: 8,
+      ),
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+          vertical: 10,
+          horizontal: 14,
+        ),
+        decoration: BoxDecoration(
+          color: message.isSentByUser
+              ? const Color(0xFF22273D)
+              : const Color(0xFF3B4261),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: message.isSentByUser
+            ? Text(
+                message.text,
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      color: Colors.white,
+                    ),
+              )
+            : DefaultTextStyle(
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      color: Colors.white,
+                    ),
+                child: AnimatedTextKit(
+                  isRepeatingAnimation: false,
+                  repeatForever: false,
+                  displayFullTextOnTap: true,
+                  totalRepeatCount: 1,
+                  animatedTexts: [
+                    TyperAnimatedText(
+                      message.text.trim(),
+                    ),
+                  ],
+                ),
+              ),
       ),
     );
   }
