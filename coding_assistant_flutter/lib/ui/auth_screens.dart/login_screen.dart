@@ -79,12 +79,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         controller: _emailController,
                         hintText: 'Email',
                         icon: Icons.email_outlined,
+                        obsecure: false,
                       ),
                       kHeight(16),
                       DefaultTextField(
                         controller: _passwordController,
                         hintText: 'Password',
                         icon: Icons.lock_clock_outlined,
+                        obsecure: true,
                       ),
                       kHeight(36),
                       DefaultButton(
