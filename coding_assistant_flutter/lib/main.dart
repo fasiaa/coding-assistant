@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
     if (authProvider.user != null) {
       initialRoute = RoutesName.homescreen;
     } else {
-      initialRoute = RoutesName.homescreen;
+      initialRoute = RoutesName.loginscreen;
     }
     return MaterialApp(
       title: AppStrings.appTitle,

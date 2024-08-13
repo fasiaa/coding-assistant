@@ -4,11 +4,13 @@ class DefaultTextField extends StatelessWidget {
   final String hintText;
   final IconData icon;
   final TextEditingController controller;
+  final bool obsecure;
   const DefaultTextField({
     super.key,
     required this.hintText,
     required this.icon,
     required this.controller,
+    required this.obsecure,
   });
 
   @override
@@ -18,6 +20,7 @@ class DefaultTextField extends StatelessWidget {
       style: Theme.of(context).textTheme.bodyLarge!.copyWith(
             color: Colors.black,
           ),
+      obscureText: obsecure,
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: Theme.of(context).textTheme.bodyLarge!.copyWith(
